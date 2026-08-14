@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class ItemManager : MonoBehaviour
 {
     [Header("Properties")]
-    [SerializeField] Camera mainCamera;
+    [SerializeField] Collider2D shelfCollider;
 
     [Header("Listener Events")]
     [SerializeField] ItemEventChannel onItemGrabbed;
@@ -33,15 +33,17 @@ public class ItemManager : MonoBehaviour
     {
         if (_grabbedItem)
         {
-
-            _grabbedItem.body.MovePosition(mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
+            _grabbedItem.body.MovePosition(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()));
         }
     }
     void Update()
     {
-        if (clickAction.WasReleasedThisFrame())
+        if (_grabbedItem && clickAction.WasReleasedThisFrame())
         {
-            _grabbedItem?.Release();
+            if (shelfCollider.OverlapPoint(_grabbedItem.transform.position))
+                _grabbedItem.ReturnToShelf();
+            else
+                _grabbedItem.Release();
             _grabbedItem = null;
         }
     }
