@@ -1,17 +1,22 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GrabbableItem : MonoBehaviour, IPointerClickHandler
+public class GrabbableItem : MonoBehaviour, IPointerDownHandler
 {
+    [Header("Parameters")]
     [SerializeField] ItemStats stats;
 
-    private Rigidbody2D _body;
+    [Header("Broadcast Events")]
+    [SerializeField] ItemEventChannel onItemGrabbed;
+
+    public Rigidbody2D body;
+
     private Vector3 _defaultPosition;
 
     private void Awake()
     {
-        _body = GetComponent<Rigidbody2D>();
-        _body.bodyType = RigidbodyType2D.Static;
+        body = GetComponent<Rigidbody2D>();
+        body.bodyType = RigidbodyType2D.Static;
 
         _defaultPosition = transform.position;
     }
@@ -23,7 +28,7 @@ public class GrabbableItem : MonoBehaviour, IPointerClickHandler
 
     public void ReturnToShelf()
     {
-        _body.bodyType = RigidbodyType2D.Static;
+        body.bodyType = RigidbodyType2D.Static;
 
         transform.position = _defaultPosition;
 
@@ -31,16 +36,19 @@ public class GrabbableItem : MonoBehaviour, IPointerClickHandler
 
     public void Grab()
     {
-        _body.bodyType = RigidbodyType2D.Kinematic;
+        body.bodyType = RigidbodyType2D.Kinematic;
     }
 
     public void Release()
     {
-        _body.bodyType = RigidbodyType2D.Dynamic;
+        body.bodyType = RigidbodyType2D.Dynamic;
+        body.linearVelocity = Vector3.zero;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("Clicked item: " + name);
+        onItemGrabbed.RaiseEvent(this);
+        Grab();
     }
 }
