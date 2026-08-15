@@ -11,6 +11,7 @@ public class RequestManager : MonoBehaviour
     [SerializeField] private int[] criteriaValues = new int[] { -5, -2, 2, 5 };
 
     public Request currentRequest;
+    public bool requestCompleted = true;
 
     enum SatisfactionRates
     {
@@ -25,8 +26,16 @@ public class RequestManager : MonoBehaviour
         Invalid
     }
 
+    private void Start()
+    {
+        requestCompleted = true;
+    }
+
     public void CreateRequest()
     {
+        if (!requestCompleted)
+            return;
+
         currentRequest = new Request();
         currentRequest.stats = new Statistics();
 
@@ -66,6 +75,7 @@ public class RequestManager : MonoBehaviour
             }
         }
 
+        requestCompleted = false;
         Debug.Log("H/S: " + currentRequest.stats.sadHappy + "  N/M: " + currentRequest.stats.nostalgicMature + "  A/C: " + currentRequest.stats.anxiousCalm + "  L/H: " + currentRequest.stats.heartbreakLove + "  E/D: " + currentRequest.stats.drowsinessEnergy);
     }
 
@@ -319,6 +329,8 @@ public class RequestManager : MonoBehaviour
 
         if (criteriaQuantity != 0)
             newDevolution.rating = newRating / criteriaQuantity / 3 * 10;
+
+        requestCompleted = true;
 
         Debug.Log(newDevolution.rating + ": " + newDevolution.text);
         return newDevolution;
