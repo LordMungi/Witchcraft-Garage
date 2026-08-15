@@ -20,5 +20,6 @@ public class GameManager : MonoBehaviour
     public void DeliverPotion()
     {
         Devolution newDevolution = requestManager.ComparePotion(cauldron.GetPotion());
+        cauldron.Clean();
     }
 }

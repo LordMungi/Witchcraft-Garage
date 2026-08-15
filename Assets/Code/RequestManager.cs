@@ -17,9 +17,11 @@ public class RequestManager : MonoBehaviour
         Perfect,
         NotEnough,
         Bad,
+        Unacceptable,
         NegPerfect,
         NegNotEnough,
         NegBad,
+        NegUnacceptable,
         Invalid
     }
 
@@ -45,7 +47,7 @@ public class RequestManager : MonoBehaviour
             switch (newCriteria)
             {
                 case 1:
-                    currentRequest.stats.happySad = newValue;
+                    currentRequest.stats.sadHappy = newValue;
                     break;
                 case 2:
                     currentRequest.stats.nostalgicMature = newValue;
@@ -54,17 +56,17 @@ public class RequestManager : MonoBehaviour
                     currentRequest.stats.anxiousCalm = newValue;
                     break;
                 case 4:
-                    currentRequest.stats.loveHeartbreak = newValue;
+                    currentRequest.stats.heartbreakLove = newValue;
                     break;
                 case 5:
-                    currentRequest.stats.energyDrowsiness = newValue;
+                    currentRequest.stats.drowsinessEnergy = newValue;
                     break;
                 default:
                     break;
             }
         }
 
-        Debug.Log("H/S: " + currentRequest.stats.happySad + "  N/M: " + currentRequest.stats.nostalgicMature + "  A/C: " + currentRequest.stats.anxiousCalm + "  L/H: " + currentRequest.stats.loveHeartbreak + "  E/D: " + currentRequest.stats.energyDrowsiness);
+        Debug.Log("H/S: " + currentRequest.stats.sadHappy + "  N/M: " + currentRequest.stats.nostalgicMature + "  A/C: " + currentRequest.stats.anxiousCalm + "  L/H: " + currentRequest.stats.heartbreakLove + "  E/D: " + currentRequest.stats.drowsinessEnergy);
     }
 
     public Devolution ComparePotion(Statistics stats)
@@ -72,47 +74,248 @@ public class RequestManager : MonoBehaviour
         Devolution newDevolution = new Devolution();
 
         int criteriaQuantity = 0;
-        int newRating = 0;
+        float newRating = 0f;
 
-        #region HappySad
-        SatisfactionRates happySadRating = compareStat(currentRequest.stats.happySad, stats.happySad);
-        string happySadText = "";
+        #region SadHappy
+        SatisfactionRates sadHappyRating = compareStat(currentRequest.stats.sadHappy, stats.sadHappy);
+        string sadHappyText = "";
 
-        if (happySadRating != SatisfactionRates.Invalid)
+        if (sadHappyRating != SatisfactionRates.Invalid)
         {
             criteriaQuantity++;
-            switch (happySadRating)
+            switch (sadHappyRating)
             {
+                case SatisfactionRates.Unacceptable:
+                    newRating += 0;
+                    sadHappyText = "It was awful, it made me sad. ";
+                    break;
                 case SatisfactionRates.Bad:
                     newRating += 1;
-                    happySadText = "It didn't make me happy. ";
+                    sadHappyText = "It didn't make me happy. ";
                     break;
                 case SatisfactionRates.NotEnough:
                     newRating += 2;
-                    happySadText = "It could have made me happier. ";
+                    sadHappyText = "It could have made me happier. ";
                     break;
                 case SatisfactionRates.Perfect:
                     newRating += 3;
-                    happySadText = "It made me very happy. ";
+                    sadHappyText = "It made me very happy. ";
+                    break;
+                case SatisfactionRates.NegUnacceptable:
+                    newRating += 0;
+                    sadHappyText = "It was awful, it made me happy. ";
                     break;
                 case SatisfactionRates.NegBad:
                     newRating += 1;
-                    happySadText = "It didn't make me sad. ";
+                    sadHappyText = "It didn't make me sad. ";
                     break;
                 case SatisfactionRates.NegNotEnough:
                     newRating += 2;
-                    happySadText = "It could have made me sadder. ";
+                    sadHappyText = "It could have made me sadder. ";
                     break;
                 case SatisfactionRates.NegPerfect:
                     newRating += 3;
-                    happySadText = "It made me very sad. ";
+                    sadHappyText = "It made me very sad. ";
                     break;
                 default:
                     break;
             }
         }
-        newDevolution.text += happySadText;
+        newDevolution.text += sadHappyText;
         #endregion
+
+        #region NostalgicMature
+        SatisfactionRates nostalgicMatureRating = compareStat(currentRequest.stats.nostalgicMature, stats.nostalgicMature);
+        string nostalgicMatureText = "";
+
+        if (nostalgicMatureRating != SatisfactionRates.Invalid)
+        {
+            criteriaQuantity++;
+            switch (nostalgicMatureRating)
+            {
+                case SatisfactionRates.Unacceptable:
+                    newRating += 0;
+                    nostalgicMatureText = "It was awful, it made me nostalgic. ";
+                    break;
+                case SatisfactionRates.Bad:
+                    newRating += 1;
+                    nostalgicMatureText = "It didn't make me feel mature. ";
+                    break;
+                case SatisfactionRates.NotEnough:
+                    newRating += 2;
+                    nostalgicMatureText = "It could have made me feel more mature. ";
+                    break;
+                case SatisfactionRates.Perfect:
+                    newRating += 3;
+                    nostalgicMatureText = "It made me feel very mature. ";
+                    break;
+                case SatisfactionRates.NegUnacceptable:
+                    newRating += 0;
+                    nostalgicMatureText = "It was awful, it made me feel mature. ";
+                    break;
+                case SatisfactionRates.NegBad:
+                    newRating += 1;
+                    nostalgicMatureText = "It didn't make me nostalgic. ";
+                    break;
+                case SatisfactionRates.NegNotEnough:
+                    newRating += 2;
+                    nostalgicMatureText = "It could have made me more nostalgic. ";
+                    break;
+                case SatisfactionRates.NegPerfect:
+                    newRating += 3;
+                    nostalgicMatureText = "It made me very nostalgic. ";
+                    break;
+                default:
+                    break;
+            }
+        }
+        newDevolution.text += nostalgicMatureText;
+        #endregion
+
+        #region AnxiousCalm
+        SatisfactionRates anxiousCalmRating = compareStat(currentRequest.stats.anxiousCalm, stats.anxiousCalm);
+        string anxiousCalmText = "";
+
+        if (anxiousCalmRating != SatisfactionRates.Invalid)
+        {
+            criteriaQuantity++;
+            switch (anxiousCalmRating)
+            {
+                case SatisfactionRates.Unacceptable:
+                    newRating += 0;
+                    anxiousCalmText = "It was awful, it made me anxious. ";
+                    break;
+                case SatisfactionRates.Bad:
+                    newRating += 1;
+                    anxiousCalmText = "It didn't make me calm. ";
+                    break;
+                case SatisfactionRates.NotEnough:
+                    newRating += 2;
+                    anxiousCalmText = "It could have made me calmer. ";
+                    break;
+                case SatisfactionRates.Perfect:
+                    newRating += 3;
+                    anxiousCalmText = "It made me very calm. ";
+                    break;
+                case SatisfactionRates.NegUnacceptable:
+                    newRating += 0;
+                    anxiousCalmText = "It was awful, it made me feel calm. ";
+                    break;
+                case SatisfactionRates.NegBad:
+                    newRating += 1;
+                    anxiousCalmText = "It didn't make me anxious. ";
+                    break;
+                case SatisfactionRates.NegNotEnough:
+                    newRating += 2;
+                    anxiousCalmText = "It could have made me more anxious. ";
+                    break;
+                case SatisfactionRates.NegPerfect:
+                    newRating += 3;
+                    anxiousCalmText = "It made me very anxious. ";
+                    break;
+                default:
+                    break;
+            }
+        }
+        newDevolution.text += anxiousCalmText;
+        #endregion
+
+        #region HeartbreakLove
+        SatisfactionRates heartbreakLoveRating = compareStat(currentRequest.stats.heartbreakLove, stats.heartbreakLove);
+        string heartbreakLoveText = "";
+
+        if (heartbreakLoveRating != SatisfactionRates.Invalid)
+        {
+            criteriaQuantity++;
+            switch (heartbreakLoveRating)
+            {
+                case SatisfactionRates.Unacceptable:
+                    newRating += 0;
+                    heartbreakLoveText = "It was awful, it made me feel heartbroken. ";
+                    break;
+                case SatisfactionRates.Bad:
+                    newRating += 1;
+                    heartbreakLoveText = "It didn't make me feel love. ";
+                    break;
+                case SatisfactionRates.NotEnough:
+                    newRating += 2;
+                    heartbreakLoveText = "It could have made me feel more love. ";
+                    break;
+                case SatisfactionRates.Perfect:
+                    newRating += 3;
+                    heartbreakLoveText = "It made me feel a lot of love. ";
+                    break;
+                case SatisfactionRates.NegUnacceptable:
+                    newRating += 0;
+                    heartbreakLoveText = "It was awful, it made me feel love. ";
+                    break;
+                case SatisfactionRates.NegBad:
+                    newRating += 1;
+                    heartbreakLoveText = "It didn't make me feel heartbroken. ";
+                    break;
+                case SatisfactionRates.NegNotEnough:
+                    newRating += 2;
+                    heartbreakLoveText = "It could have made me more heartbroken. ";
+                    break;
+                case SatisfactionRates.NegPerfect:
+                    newRating += 3;
+                    heartbreakLoveText = "It made me feel very heartbroken. ";
+                    break;
+                default:
+                    break;
+            }
+        }
+        newDevolution.text += heartbreakLoveText;
+        #endregion
+
+        #region DrowsinessEnergy
+        SatisfactionRates drowsinessEnergyRating = compareStat(currentRequest.stats.drowsinessEnergy, stats.drowsinessEnergy);
+        string drowsinessEnergyText = "";
+
+        if (drowsinessEnergyRating != SatisfactionRates.Invalid)
+        {
+            criteriaQuantity++;
+            switch (drowsinessEnergyRating)
+            {
+                case SatisfactionRates.Unacceptable:
+                    newRating += 0;
+                    drowsinessEnergyText = "It was awful, it made me sleepy. ";
+                    break;
+                case SatisfactionRates.Bad:
+                    newRating += 1;
+                    drowsinessEnergyText = "It didn't make me energetic. ";
+                    break;
+                case SatisfactionRates.NotEnough:
+                    newRating += 2;
+                    drowsinessEnergyText = "It could have made me more energetic. ";
+                    break;
+                case SatisfactionRates.Perfect:
+                    newRating += 3;
+                    drowsinessEnergyText = "It made me feel very energetic. ";
+                    break;
+                case SatisfactionRates.NegUnacceptable:
+                    newRating += 0;
+                    drowsinessEnergyText = "It was awful, it made me feel energetic. ";
+                    break;
+                case SatisfactionRates.NegBad:
+                    newRating += 1;
+                    drowsinessEnergyText = "It didn't make me sleepy. ";
+                    break;
+                case SatisfactionRates.NegNotEnough:
+                    newRating += 2;
+                    drowsinessEnergyText = "It could have made me sleepier. ";
+                    break;
+                case SatisfactionRates.NegPerfect:
+                    newRating += 3;
+                    drowsinessEnergyText = "It made me very sleepy. ";
+                    break;
+                default:
+                    break;
+            }
+        }
+        newDevolution.text += drowsinessEnergyText;
+        #endregion
+
 
         if (criteriaQuantity != 0)
             newDevolution.rating = newRating / criteriaQuantity / 3 * 10;
@@ -133,17 +336,21 @@ public class RequestManager : MonoBehaviour
                 return SatisfactionRates.Perfect;
             else if (potionStat >= requestStat / 2)
                 return SatisfactionRates.NotEnough;
-            else
+            else if (potionStat >= 0)
                 return SatisfactionRates.Bad;
+            else 
+                return SatisfactionRates.Unacceptable;
         }
         else
         {
             if (potionStat <= requestStat)
-                return SatisfactionRates.Perfect;
+                return SatisfactionRates.NegPerfect;
             else if (potionStat <= requestStat / 2)
-                return SatisfactionRates.NotEnough;
+                return SatisfactionRates.NegNotEnough;
+            else if (potionStat <= 0)
+                return SatisfactionRates.NegBad;
             else
-                return SatisfactionRates.Bad;
+                return SatisfactionRates.NegUnacceptable;
         }
     }
 }

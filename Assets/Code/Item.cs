@@ -55,7 +55,6 @@ public class Item : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Clicked item: " + name);
         onItemGrabbed.RaiseEvent(this);
         Grab();
     }

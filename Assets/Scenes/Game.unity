@@ -312,11 +312,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabbableItem
   stats:
-    happySad: 0
+    sadHappy: 2
     nostalgicMature: 0
     anxiousCalm: 0
-    loveHeartbreak: 0
-    energyDrowsiness: 0
+    heartbreakLove: 0
+    drowsinessEnergy: 0
   onItemGrabbed: {fileID: 11400000, guid: 3c4c7dd6512ac314e801a1fb40adf3d5, type: 2}
   body: {fileID: 0}
 --- !u!212 &74544705
