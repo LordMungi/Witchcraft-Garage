@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Cauldron : MonoBehaviour
 {
     [Header("Broadcast Events")]
     [SerializeField] ItemEventChannel onItemAddedToPotion;
@@ -29,6 +29,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
             itemsInPotion.Add(item);
             onItemAddedToPotion.RaiseEvent(item);
         }
+    }
+
+    public Statistics GetPotion()
+    {
+        Statistics potion = new Statistics();
+
+        foreach (Item item in itemsInPotion)
+        {
+            potion += item.stats;
+        }
+
+        return potion;
     }
 
     public void Clean()

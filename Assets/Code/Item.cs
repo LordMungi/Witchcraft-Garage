@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class Item : MonoBehaviour, IPointerDownHandler
 {
     [Header("Parameters")]
-    [SerializeField] Statistics stats;
+    [SerializeField] public Statistics stats;
 
     [Header("Broadcast Events")]
     [SerializeField] ItemEventChannel onItemGrabbed;
