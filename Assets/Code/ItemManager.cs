@@ -14,7 +14,7 @@ public class ItemManager : MonoBehaviour
 
     InputAction clickAction;
 
-    private GrabbableItem _grabbedItem = null;
+    private Item _grabbedItem = null;
 
     private void OnEnable()
     {
@@ -54,18 +54,18 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private void GrabItem(GrabbableItem item)
+    private void GrabItem(Item item)
     {
         item.Grab();
         _grabbedItem = item;
     }
 
-    private void HideItem(GrabbableItem item)
+    private void HideItem(Item item)
     {
         item.gameObject.SetActive(false);
     }
 
-    private void ReturnItem(GrabbableItem item)
+    private void ReturnItem(Item item)
     {
         item.gameObject.SetActive(true);
         item.ReturnToShelf();

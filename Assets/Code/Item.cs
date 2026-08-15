@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GrabbableItem : MonoBehaviour, IPointerDownHandler
+public class Item : MonoBehaviour, IPointerDownHandler
 {
     [Header("Parameters")]
-    [SerializeField] ItemStats stats;
+    [SerializeField] Statistics stats;
 
     [Header("Broadcast Events")]
     [SerializeField] ItemEventChannel onItemGrabbed;

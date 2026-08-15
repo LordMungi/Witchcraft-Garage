@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3aa42ea92a11884e9b1baf7c1d740c0, type: 3}
   m_Name: ItemStats
   m_EditorClassIdentifier: Assembly-CSharp::ItemStats
-  <happy>k__BackingField: 0
-  <nostalgic>k__BackingField: 0
-  <sweet>k__BackingField: 0
+  happySad: 0
+  nostalgicMature: 0
+  anxiousCalm: 0
+  loveHeartbreak: 0
+  energyDrowsiness: 0

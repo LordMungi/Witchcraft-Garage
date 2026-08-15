@@ -8,7 +8,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] ItemEventChannel onItemRemovedFromPotion;
 
     [Header("Public Properties")]
-    public List<GrabbableItem> itemsInPotion = new List<GrabbableItem>();
+    public List<Item> itemsInPotion = new List<Item>();
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (collision.CompareTag("Item"))
         {
-            GrabbableItem item = collision.GetComponent<GrabbableItem>();
+            Item item = collision.GetComponent<Item>();
 
             itemsInPotion.Add(item);
             onItemAddedToPotion.RaiseEvent(item);
@@ -33,7 +33,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void Clean()
     {
-        foreach (GrabbableItem item in itemsInPotion)
+        foreach (Item item in itemsInPotion)
         {
             onItemRemovedFromPotion.RaiseEvent(item);
         }
