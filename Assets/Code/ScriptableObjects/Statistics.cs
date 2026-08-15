@@ -1,14 +1,13 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Statistics", menuName = "Scriptable Objects/Statistics")]
-
-public class Statistics : ScriptableObject
+[Serializable] public struct Statistics 
 {
     public const int RANGE = 2;
 
-    [field: SerializeField, Range(-RANGE, RANGE)] public int happySad = 0;
-    [field: SerializeField, Range(-RANGE, RANGE)] public int nostalgicMature = 0;
-    [field: SerializeField, Range(-RANGE, RANGE)] public int anxiousCalm = 0;
-    [field: SerializeField, Range(-RANGE, RANGE)] public int loveHeartbreak = 0;
-    [field: SerializeField, Range(-RANGE, RANGE)] public int energyDrowsiness = 0;
+    [field: SerializeField, Range(-RANGE, RANGE)] public int happySad;
+    [field: SerializeField, Range(-RANGE, RANGE)] public int nostalgicMature;
+    [field: SerializeField, Range(-RANGE, RANGE)] public int anxiousCalm;
+    [field: SerializeField, Range(-RANGE, RANGE)] public int loveHeartbreak;
+    [field: SerializeField, Range(-RANGE, RANGE)] public int energyDrowsiness;
 }
