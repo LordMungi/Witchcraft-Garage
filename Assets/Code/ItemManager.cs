@@ -9,6 +9,8 @@ public class ItemManager : MonoBehaviour
 
     [Header("Listener Events")]
     [SerializeField] ItemEventChannel onItemGrabbed;
+    [SerializeField] ItemEventChannel onItemAddedToPotion;
+    [SerializeField] ItemEventChannel onItemRemovedFromPotion;
 
     InputAction clickAction;
 
@@ -17,11 +19,15 @@ public class ItemManager : MonoBehaviour
     private void OnEnable()
     {
         onItemGrabbed.OnEventTriggered += GrabItem;
+        onItemAddedToPotion.OnEventTriggered += HideItem;
+        onItemRemovedFromPotion.OnEventTriggered += ReturnItem;
     }
 
     private void OnDisable()
     {
         onItemGrabbed.OnEventTriggered -= GrabItem;
+        onItemAddedToPotion.OnEventTriggered -= HideItem;
+        onItemRemovedFromPotion.OnEventTriggered -= ReturnItem;
     }
 
     private void Awake()
@@ -52,5 +58,16 @@ public class ItemManager : MonoBehaviour
     {
         item.Grab();
         _grabbedItem = item;
+    }
+
+    private void HideItem(GrabbableItem item)
+    {
+        item.gameObject.SetActive(false);
+    }
+
+    private void ReturnItem(GrabbableItem item)
+    {
+        item.gameObject.SetActive(true);
+        item.ReturnToShelf();
     }
 }

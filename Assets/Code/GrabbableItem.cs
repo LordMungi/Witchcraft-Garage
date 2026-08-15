@@ -9,6 +9,7 @@ public class GrabbableItem : MonoBehaviour, IPointerDownHandler
     [Header("Broadcast Events")]
     [SerializeField] ItemEventChannel onItemGrabbed;
 
+    [Header("Public Properties")]
     public Rigidbody2D body;
 
     private Vector3 _defaultPosition;
