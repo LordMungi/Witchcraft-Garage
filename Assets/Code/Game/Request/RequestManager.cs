@@ -10,6 +10,9 @@ public class RequestManager : MonoBehaviour
     [Space]
     [SerializeField] private int[] criteriaValues = new int[] { -5, -2, 2, 5 };
 
+    [Header("Broadcast Events")]
+    [SerializeField] private DevolutionEventChannel onDevolutionPosted;
+
     public Request currentRequest;
     public bool requestCompleted = true;
 
@@ -333,6 +336,7 @@ public class RequestManager : MonoBehaviour
         requestCompleted = true;
 
         Debug.Log(newDevolution.rating + ": " + newDevolution.text);
+        onDevolutionPosted.RaiseEvent(newDevolution);
         return newDevolution;
     }
 
