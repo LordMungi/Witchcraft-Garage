@@ -786,8 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975dfdd9f512a2f478c9ea49827b8edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  camera1Position: {fileID: 572908371}
-  camera2Position: {fileID: 1942203951}
+  leftCameraLimit: {fileID: 572908371}
+  rightCameraLimit: {fileID: 1942203951}
   panSpeed: 20
   onLeftTriggerEnterUI: {fileID: 11400000, guid: 187733f0fbdd78344b5d8a1276e82fbf, type: 2}
   onLeftTriggerExitUI: {fileID: 11400000, guid: 1f467b775386a8046bb888a645ff974e, type: 2}
@@ -803,9 +803,9 @@ GameObject:
   m_Component:
   - component: {fileID: 572908371}
   m_Layer: 0
-  m_Name: Camera 1 Position
+  m_Name: Left Camera Limit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -818,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 572908370}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -33.47, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2606,9 +2606,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1942203951}
   m_Layer: 0
-  m_Name: Camera 2 Position
+  m_Name: Right Camera Limit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2621,7 +2621,7 @@ Transform:
   m_GameObject: {fileID: 1942203950}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.83, y: 0, z: -10}
+  m_LocalPosition: {x: 9.01, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
