@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
 
     private Camera _camera;
 
-    private CameraSection _currentCameraSection;
+    public static CameraSection CurrentCameraSection;
     private int _currentCameraSectionIndex = 0;
 
     private bool _isMovingLeft = false;
@@ -38,9 +38,9 @@ public class CameraController : MonoBehaviour
         }
 
         _currentCameraSectionIndex = Mathf.Min(startingCameraSection, cameraSections.Length);
-        _currentCameraSection = cameraSections[_currentCameraSectionIndex];
+        CurrentCameraSection = cameraSections[_currentCameraSectionIndex];
 
-        transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
+        transform.position = new Vector3(CurrentCameraSection.center.position.x, CurrentCameraSection.center.position.y, transform.position.z);
     }
     private void OnEnable()
     {
@@ -62,12 +62,12 @@ public class CameraController : MonoBehaviour
     {
         if (_isMovingLeft)
         {
-            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _currentCameraSection.limitLeftPosition, panSpeed * Time.deltaTime), 
+            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, CurrentCameraSection.limitLeftPosition, panSpeed * Time.deltaTime), 
                 transform.position.y, transform.position.z);
         }
         if (_isMovingRight)
         {
-            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _currentCameraSection.limitRightPosition, panSpeed * Time.deltaTime), 
+            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, CurrentCameraSection.limitRightPosition, panSpeed * Time.deltaTime), 
                 transform.position.y, transform.position.z);
         }
     }
@@ -76,13 +76,13 @@ public class CameraController : MonoBehaviour
     {
         _isMovingLeft = true;
 
-        if (Mathf.Abs(transform.position.x - _currentCameraSection.limitLeftPosition) <= Mathf.Epsilon)
+        if (Mathf.Abs(transform.position.x - CurrentCameraSection.limitLeftPosition) <= Mathf.Epsilon)
         {
             if (_currentCameraSectionIndex > 0)
             {
                 _currentCameraSectionIndex--;
-                _currentCameraSection = cameraSections[_currentCameraSectionIndex];
-                transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
+                CurrentCameraSection = cameraSections[_currentCameraSectionIndex];
+                transform.position = new Vector3(CurrentCameraSection.center.position.x, CurrentCameraSection.center.position.y, transform.position.z);
                 StopHover();
             }
         }
@@ -92,13 +92,13 @@ public class CameraController : MonoBehaviour
     {
         _isMovingRight = true;
 
-        if (Mathf.Abs(transform.position.x - _currentCameraSection.limitRightPosition) <= Mathf.Epsilon)
+        if (Mathf.Abs(transform.position.x - CurrentCameraSection.limitRightPosition) <= Mathf.Epsilon)
         {
             if (_currentCameraSectionIndex < cameraSections.Length - 1)
             {
                 _currentCameraSectionIndex++;
-                _currentCameraSection = cameraSections[_currentCameraSectionIndex];
-                transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
+                CurrentCameraSection = cameraSections[_currentCameraSectionIndex];
+                transform.position = new Vector3(CurrentCameraSection.center.position.x, CurrentCameraSection.center.position.y, transform.position.z);
                 StopHover();
             }
         }

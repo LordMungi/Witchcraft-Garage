@@ -4,19 +4,19 @@ using UnityEngine;
 public class ItemPopupUI : MonoBehaviour
 {
     [Header("Properties")]
-    [SerializeField] private CanvasRenderer canvas;
+    [SerializeField] private RectTransform canvasRect;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
+    [SerializeField] private float paddingFromItem = 10;
 
     [Header("Listener Events")]
     [SerializeField] private ItemEventChannel onItemHoverEnter;
     [SerializeField] private ItemEventChannel onItemHoverExit;
 
     private Item _followedItem = null;
-
     private void Start()
     {
-        canvas.gameObject.SetActive(false);
+        canvasRect.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -42,17 +42,23 @@ public class ItemPopupUI : MonoBehaviour
     {
         if (!_followedItem)
         {
-            transform.position = item.transform.position;
+            float positionX = item.transform.position.x < CameraController.CurrentCameraSection.center.position.x ?
+                item.transform.position.x + canvasRect.rect.size.x / 2 : item.transform.position.x - canvasRect.rect.size.x / 2;
+
+            float positionY = item.transform.position.y < CameraController.CurrentCameraSection.center.position.y ?
+                item.transform.position.y + paddingFromItem : item.transform.position.y - paddingFromItem;
+
+            transform.position = new Vector3(positionX, positionY, transform.position.z);
             itemNameText.text = item.name;
             itemDescriptionText.text = item.description;
             _followedItem = item;
-            canvas.gameObject.SetActive(true);
+            canvasRect.gameObject.SetActive(true);
         }
     }
 
     private void HidePopup(Item item)
     {
-        canvas.gameObject.SetActive(false);
+        canvasRect.gameObject.SetActive(false);
         _followedItem = null;
     }
 }
