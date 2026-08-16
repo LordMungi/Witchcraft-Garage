@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform leftCameraLimit;
-    [SerializeField] private Transform rightCameraLimit;
+    [Header("Properties")]
+    [SerializeField] private CameraSection[] cameraSections;
+    [SerializeField, Range(0, 10)] private int startingCameraSection = 1;
     [Space]
     [SerializeField] private float panSpeed = 20;
 
@@ -15,9 +16,7 @@ public class CameraController : MonoBehaviour
 
     private Camera _camera;
 
-    private float _leftCameraLimitPosition;
-    private float _rightCameraLimitPosition;
-
+    private CameraSection _currentCameraSection;
     private bool _isMovingLeft = false;
     private bool _isMovingRight = false;
 
@@ -25,11 +24,19 @@ public class CameraController : MonoBehaviour
     {
         _camera = GetComponent<Camera>();
 
+
         float aspect = _camera.aspect > 16f / 9f ? 16f / 9f : _camera.aspect;
         float cameraWidth = _camera.orthographicSize * aspect;
 
-        _leftCameraLimitPosition = leftCameraLimit.position.x + cameraWidth;
-        _rightCameraLimitPosition = rightCameraLimit.position.x - cameraWidth;
+        for (int i = 0; i < cameraSections.Length; i++)
+        {
+            cameraSections[i].limitLeftPosition = cameraSections[i].limitLeft.position.x + cameraWidth;
+            cameraSections[i].limitRightPosition = cameraSections[i].limitRight.position.x - cameraWidth;
+        }
+
+        _currentCameraSection = cameraSections[Mathf.Min(startingCameraSection, cameraSections.Length)];
+
+        transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
     }
     private void OnEnable()
     {
@@ -51,12 +58,12 @@ public class CameraController : MonoBehaviour
     {
         if (_isMovingLeft)
         {
-            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _leftCameraLimitPosition, panSpeed * Time.deltaTime), 
+            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _currentCameraSection.limitLeftPosition, panSpeed * Time.deltaTime), 
                 transform.position.y, transform.position.z);
         }
         if (_isMovingRight)
         {
-            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _rightCameraLimitPosition, panSpeed * Time.deltaTime), 
+            transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, _currentCameraSection.limitRightPosition, panSpeed * Time.deltaTime), 
                 transform.position.y, transform.position.z);
         }
     }
