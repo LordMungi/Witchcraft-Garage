@@ -1350,8 +1350,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1366936622}
-        m_TargetAssemblyTypeName: NewMonoBehaviourScript, Assembly-CSharp
-        m_MethodName: Clean
+        m_TargetAssemblyTypeName: Cauldron, Assembly-CSharp
+        m_MethodName: Refill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7442,6 +7442,7 @@ GameObject:
   - component: {fileID: 1366936620}
   - component: {fileID: 1366936619}
   - component: {fileID: 1366936622}
+  - component: {fileID: 1366936623}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -7545,7 +7546,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.6897472, g: 0.9433962, b: 0.9020001, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7581,9 +7582,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dabc3d2b5c878c4f8e1494582fdddfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  animator: {fileID: 1366936623}
+  spriteRenderer: {fileID: 1366936620}
   onItemAddedToPotion: {fileID: 11400000, guid: 28dc33d59e19c714db20b6260fecedae, type: 2}
   onItemRemovedFromPotion: {fileID: 11400000, guid: 38c9e81482f9ae848b94613f63143344, type: 2}
   itemsInPotion: []
+--- !u!95 &1366936623
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366936617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e073e9205d5a9a42bd480206786464d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1385589643
 GameObject:
   m_ObjectHideFlags: 0

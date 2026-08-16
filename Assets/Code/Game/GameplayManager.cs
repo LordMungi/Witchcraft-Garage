@@ -24,7 +24,7 @@ public class GameplayManager : MonoBehaviour
         {
             _devolutions.Add(requestManager.ComparePotion(cauldron.GetPotion()));
             _completedRequests++;
-            cauldron.Clean();
+            cauldron.Refill();
         }
 
         if (_completedRequests >= requestsPerDay)
@@ -39,7 +39,7 @@ public class GameplayManager : MonoBehaviour
         _completedRequests = 0;
         _currentDay++;
 
-        cauldron.Clean();
+        cauldron.Refill();
     }
 
     private void FinishDay()
