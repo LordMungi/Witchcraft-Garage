@@ -26,9 +26,6 @@ public class CameraController : MonoBehaviour
         _camera = GetComponent<Camera>();
 
         float aspect = _camera.aspect > 16f / 9f ? 16f / 9f : _camera.aspect;
-        Debug.Log("Cam: " + _camera.aspect);
-        Debug.Log("Asp: " + aspect);
-        Debug.Log("16/9: " + 16 / 9);
         float cameraWidth = _camera.orthographicSize * aspect;
 
         _leftCameraLimitPosition = leftCameraLimit.position.x + cameraWidth;
