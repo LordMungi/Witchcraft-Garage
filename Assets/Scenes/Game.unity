@@ -3367,10 +3367,12 @@ MonoBehaviour:
     limitRightPosition: 0
   startingCameraSection: 1
   panSpeed: 20
+  fastPanTime: 0.5
   onLeftTriggerEnterUI: {fileID: 11400000, guid: 187733f0fbdd78344b5d8a1276e82fbf, type: 2}
   onLeftTriggerExitUI: {fileID: 11400000, guid: 1f467b775386a8046bb888a645ff974e, type: 2}
   onRightTriggerEnterUI: {fileID: 11400000, guid: 9235fe9c44c58cd4d9dacedc41d55509, type: 2}
   onRightTriggerExitUI: {fileID: 11400000, guid: 0d70b0f809a1e2947b56b386b31f1adc, type: 2}
+  onItemGrabbed: {fileID: 11400000, guid: 3c4c7dd6512ac314e801a1fb40adf3d5, type: 2}
 --- !u!1 &564793444
 GameObject:
   m_ObjectHideFlags: 0

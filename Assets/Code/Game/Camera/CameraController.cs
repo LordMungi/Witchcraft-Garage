@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private EventChannel onLeftTriggerExitUI;
     [SerializeField] private EventChannel onRightTriggerEnterUI;
     [SerializeField] private EventChannel onRightTriggerExitUI;
+    [SerializeField] private ItemEventChannel onItemGrabbed;
 
     private Camera _camera;
 
@@ -23,8 +24,7 @@ public class CameraController : MonoBehaviour
     private bool _isMovingLeft = false;
     private bool _isMovingRight = false;
 
-    private bool _isPanningLeft = false;
-    private bool _isPanningRight = false;
+    private bool _isPanning = false;
 
     private float _elapsedTime = 0f;
 
@@ -53,6 +53,7 @@ public class CameraController : MonoBehaviour
         onLeftTriggerExitUI.OnEventTriggered += StopHover;
         onRightTriggerEnterUI.OnEventTriggered += HoverRight;
         onRightTriggerExitUI.OnEventTriggered += StopHover;
+        onItemGrabbed.OnEventTriggered += OnItemGrabbed;
     }
 
     private void OnDisable()
@@ -61,6 +62,7 @@ public class CameraController : MonoBehaviour
         onLeftTriggerExitUI.OnEventTriggered -= StopHover;
         onRightTriggerEnterUI.OnEventTriggered -= HoverRight;
         onRightTriggerExitUI.OnEventTriggered -= StopHover;
+        onItemGrabbed.OnEventTriggered -= OnItemGrabbed;
     }
 
     void Update()
@@ -75,21 +77,7 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, CurrentCameraSection.limitRightPosition, panSpeed * Time.deltaTime), 
                 transform.position.y, transform.position.z);
         }
-        if (_isPanningLeft)
-        {
-            Debug.Log("a");
-            if (_elapsedTime < fastPanTime)
-            {
-                float t = _elapsedTime / fastPanTime;
-
-                transform.position = new Vector3(Mathf.Lerp(transform.position.x, CurrentCameraSection.center.position.x, t),
-                    transform.position.y, transform.position.z);
-                _elapsedTime += Time.deltaTime;
-            }
-            else
-                _isPanningLeft = false;
-        }
-        else if (_isPanningRight)
+        if (_isPanning)
         {
             if (_elapsedTime < fastPanTime)
             {
@@ -100,7 +88,7 @@ public class CameraController : MonoBehaviour
                 _elapsedTime += Time.deltaTime;
             }
             else
-                _isPanningRight = false;
+                _isPanning = false;
         }
     }
 
@@ -110,7 +98,10 @@ public class CameraController : MonoBehaviour
 
         if (Mathf.Abs(transform.position.x - CurrentCameraSection.limitLeftPosition) <= Mathf.Epsilon)
         {
-            PanLeft();
+            if (_currentCameraSectionIndex > 0)
+            {
+                PanToCamera(_currentCameraSectionIndex - 1);
+            }
         }
     }
 
@@ -120,31 +111,10 @@ public class CameraController : MonoBehaviour
 
         if (Mathf.Abs(transform.position.x - CurrentCameraSection.limitRightPosition) <= Mathf.Epsilon)
         {
-            PanRight();
-        }
-    }
-
-    public void PanRight()
-    {
-        if (_currentCameraSectionIndex < cameraSections.Length - 1)
-        {
-            _currentCameraSectionIndex++;
-            CurrentCameraSection = cameraSections[_currentCameraSectionIndex];
-            _isPanningRight = true;
-            _elapsedTime = 0f;
-            StopHover();
-        }
-    }
-
-    public void PanLeft()
-    {
-        if (_currentCameraSectionIndex > 0)
-        {
-            _currentCameraSectionIndex--;
-            CurrentCameraSection = cameraSections[_currentCameraSectionIndex];
-            _isPanningLeft = true;
-            _elapsedTime = 0f;
-            StopHover();
+            if (_currentCameraSectionIndex < cameraSections.Length - 1)
+            {
+                PanToCamera(_currentCameraSectionIndex + 1);
+            }
         }
     }
 
@@ -152,5 +122,19 @@ public class CameraController : MonoBehaviour
     {
         _isMovingLeft = false;
         _isMovingRight = false;
+    }
+
+    public void PanToCamera(int index)
+    {
+        _currentCameraSectionIndex = index;
+        CurrentCameraSection = cameraSections[_currentCameraSectionIndex];
+        _isPanning= true;
+        _elapsedTime = 0f;
+        StopHover();
+    }
+
+    private void OnItemGrabbed(Item item)
+    {
+        PanToCamera(startingCameraSection);
     }
 }
