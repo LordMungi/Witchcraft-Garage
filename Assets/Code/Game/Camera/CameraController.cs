@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0, 10)] private int startingCameraSection = 1;
     [Space]
     [SerializeField] private float panSpeed = 20;
+    [SerializeField] private float fastPanSpeed = 200;
 
     [Header("Listener Events")]
     [SerializeField] private EventChannel onLeftTriggerEnterUI;
@@ -17,6 +18,8 @@ public class CameraController : MonoBehaviour
     private Camera _camera;
 
     private CameraSection _currentCameraSection;
+    private int _currentCameraSectionIndex = 0;
+
     private bool _isMovingLeft = false;
     private bool _isMovingRight = false;
 
@@ -34,7 +37,8 @@ public class CameraController : MonoBehaviour
             cameraSections[i].limitRightPosition = cameraSections[i].limitRight.position.x - cameraWidth;
         }
 
-        _currentCameraSection = cameraSections[Mathf.Min(startingCameraSection, cameraSections.Length)];
+        _currentCameraSectionIndex = Mathf.Min(startingCameraSection, cameraSections.Length);
+        _currentCameraSection = cameraSections[_currentCameraSectionIndex];
 
         transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
     }
@@ -71,11 +75,33 @@ public class CameraController : MonoBehaviour
     public void HoverLeft()
     {
         _isMovingLeft = true;
+
+        if (Mathf.Abs(transform.position.x - _currentCameraSection.limitLeftPosition) <= Mathf.Epsilon)
+        {
+            if (_currentCameraSectionIndex > 0)
+            {
+                _currentCameraSectionIndex--;
+                _currentCameraSection = cameraSections[_currentCameraSectionIndex];
+                transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
+                StopHover();
+            }
+        }
     }
 
     public void HoverRight()
     {
         _isMovingRight = true;
+
+        if (Mathf.Abs(transform.position.x - _currentCameraSection.limitRightPosition) <= Mathf.Epsilon)
+        {
+            if (_currentCameraSectionIndex < cameraSections.Length - 1)
+            {
+                _currentCameraSectionIndex++;
+                _currentCameraSection = cameraSections[_currentCameraSectionIndex];
+                transform.position = new Vector3(_currentCameraSection.center.position.x, _currentCameraSection.center.position.y, transform.position.z);
+                StopHover();
+            }
+        }
     }
 
     public void StopHover()
