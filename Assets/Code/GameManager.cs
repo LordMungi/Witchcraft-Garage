@@ -7,16 +7,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RequestManager requestManager;
     [SerializeField] private Cauldron cauldron;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void DeliverPotion()
     {
         if (cauldron.itemsInPotion.Count > 0 && !requestManager.requestCompleted)
