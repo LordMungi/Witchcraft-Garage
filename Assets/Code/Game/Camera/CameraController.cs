@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0, 10)] private int startingCameraSection = 1;
     [Space]
     [SerializeField] private float panSpeed = 20;
-    [SerializeField] private float fastPanSpeed = 200;
 
     [Header("Listener Events")]
     [SerializeField] private EventChannel onLeftTriggerEnterUI;

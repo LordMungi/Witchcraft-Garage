@@ -11,6 +11,7 @@ public class RequestManager : MonoBehaviour
     [SerializeField] private int[] criteriaValues = new int[] { -5, -2, 2, 5 };
 
     [Header("Broadcast Events")]
+    [SerializeField] private RequestEventChannel onRequestPosted;
     [SerializeField] private DevolutionEventChannel onDevolutionPosted;
 
     public Request currentRequest;
@@ -77,9 +78,10 @@ public class RequestManager : MonoBehaviour
                     break;
             }
         }
-
+        currentRequest.text = " H/S: " + currentRequest.stats.sadHappy + "\n  N/M: " + currentRequest.stats.nostalgicMature + "\n  A/C: " + currentRequest.stats.anxiousCalm + "\n  L/H: " + currentRequest.stats.heartbreakLove + "\n  E/D: " + currentRequest.stats.drowsinessEnergy;
         requestCompleted = false;
-        Debug.Log("H/S: " + currentRequest.stats.sadHappy + "  N/M: " + currentRequest.stats.nostalgicMature + "  A/C: " + currentRequest.stats.anxiousCalm + "  L/H: " + currentRequest.stats.heartbreakLove + "  E/D: " + currentRequest.stats.drowsinessEnergy);
+
+        onRequestPosted.RaiseEvent(currentRequest);
     }
 
     public Devolution ComparePotion(Statistics stats)
@@ -335,7 +337,6 @@ public class RequestManager : MonoBehaviour
 
         requestCompleted = true;
 
-        Debug.Log(newDevolution.rating + ": " + newDevolution.text);
         onDevolutionPosted.RaiseEvent(newDevolution);
         return newDevolution;
     }
