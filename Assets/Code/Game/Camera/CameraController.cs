@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class CameraController : MonoBehaviour
     [Space]
     [SerializeField] private float panSpeed = 20;
     [SerializeField] private float fastPanTime = 0.5f;
+    [SerializeField] private Image leftHandle;
+    [SerializeField] private Image rightHandle;
 
     [Header("Listener Events")]
     [SerializeField] private EventChannel onLeftTriggerEnterUI;
@@ -90,6 +93,32 @@ public class CameraController : MonoBehaviour
             else
                 _isPanning = false;
         }
+
+        if (Mathf.Abs(transform.position.x - CurrentCameraSection.limitLeftPosition) <= Mathf.Epsilon)
+        {
+            if (_currentCameraSectionIndex <= 0)
+            {
+                if (leftHandle.gameObject.activeInHierarchy)
+                    leftHandle.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            if (!leftHandle.gameObject.activeInHierarchy)
+                leftHandle.gameObject.SetActive(true);
+        }
+
+        if (Mathf.Abs(transform.position.x - CurrentCameraSection.limitRightPosition) <= Mathf.Epsilon)
+        {
+            if (_currentCameraSectionIndex >= cameraSections.Length - 1)
+            {
+                if (rightHandle.gameObject.activeInHierarchy)
+                    rightHandle.gameObject.SetActive(false);
+            }
+        }
+        else
+            if (!rightHandle.gameObject.activeInHierarchy)
+                    rightHandle.gameObject.SetActive(true);
     }
 
     public void HoverLeft()

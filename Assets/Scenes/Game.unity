@@ -3550,6 +3550,8 @@ MonoBehaviour:
   startingCameraSection: 1
   panSpeed: 20
   fastPanTime: 0.5
+  leftHandle: {fileID: 652541382}
+  rightHandle: {fileID: 1176541750}
   onLeftTriggerEnterUI: {fileID: 11400000, guid: 187733f0fbdd78344b5d8a1276e82fbf, type: 2}
   onLeftTriggerExitUI: {fileID: 11400000, guid: 1f467b775386a8046bb888a645ff974e, type: 2}
   onRightTriggerEnterUI: {fileID: 11400000, guid: 9235fe9c44c58cd4d9dacedc41d55509, type: 2}
