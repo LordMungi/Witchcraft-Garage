@@ -14,6 +14,9 @@ public class RequestManager : MonoBehaviour
     [SerializeField] private RequestEventChannel onRequestPosted;
     [SerializeField] private DevolutionEventChannel onDevolutionPosted;
 
+    [Header("Listener Events")]
+    [SerializeField] private EventChannel onRequestCreated;
+
     public Request currentRequest;
     public bool requestCompleted = true;
 
@@ -28,6 +31,16 @@ public class RequestManager : MonoBehaviour
         NegBad,
         NegUnacceptable,
         Invalid
+    }
+
+    private void OnEnable()
+    {
+        onRequestCreated.OnEventTriggered += CreateRequest;
+    }
+
+    private void OnDisable()
+    {
+        onRequestCreated.OnEventTriggered -= CreateRequest;
     }
 
     private void Start()
