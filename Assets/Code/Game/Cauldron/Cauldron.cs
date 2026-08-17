@@ -5,7 +5,7 @@ public class Cauldron : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] Animator animator;
-    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer[] spriteRenderers;
 
     [Header("Broadcast Events")]
     [SerializeField] ItemEventChannel onItemAddedToPotion;
@@ -18,7 +18,7 @@ public class Cauldron : MonoBehaviour
 
     private void Start()
     {
-        _defaultColor = spriteRenderer.color;
+        _defaultColor = spriteRenderers[0].color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +30,11 @@ public class Cauldron : MonoBehaviour
             itemsInPotion.Add(item);
             onItemAddedToPotion.RaiseEvent(item);
 
-            spriteRenderer.color = Random.ColorHSV(0, 1, 0.3f, 1, 0.5f, 1, 1, 1);
+            Color newColor = Random.ColorHSV(0, 1, 0.3f, 1, 0.5f, 1, 1, 1); 
+            foreach (SpriteRenderer renderer in spriteRenderers)
+            {
+                renderer.color = newColor;
+            }
         }
     }
 
@@ -57,7 +61,10 @@ public class Cauldron : MonoBehaviour
         {
             onItemRemovedFromPotion.RaiseEvent(item);
         }
-        spriteRenderer.color = _defaultColor;
+        foreach (SpriteRenderer renderer in spriteRenderers)
+        {
+            renderer.color = _defaultColor;
+        }
         itemsInPotion.Clear();
     }
 }
