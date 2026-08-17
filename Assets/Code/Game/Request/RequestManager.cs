@@ -10,6 +10,11 @@ public class RequestManager : MonoBehaviour
     [Space]
     [SerializeField] private int[] criteriaValues = new int[] { -5, -2, 2, 5 };
 
+    const int superNeg = -4;
+    const int neg = -2;
+    const int pos = 2;
+    const int superPos = 4;
+
     [Header("Broadcast Events")]
     [SerializeField] private RequestEventChannel onRequestPosted;
     [SerializeField] private DevolutionEventChannel onDevolutionPosted;
@@ -69,29 +74,107 @@ public class RequestManager : MonoBehaviour
             usedCriteria.Add(newCriteria);
 
             int newValue = criteriaValues[Random.Range(0, criteriaValues.Length)];
-
+                     
             switch (newCriteria)
             {
                 case 1:
                     currentRequest.stats.sadHappy = newValue;
+                    switch (newValue)
+                    {
+                        case superNeg:
+                            currentRequest.text += "I want to cry my heart out. ";
+                            break;
+                        case neg:
+                            currentRequest.text += "I just need something to help me cry a little bit. ";
+                            break;
+                        case pos:
+                            currentRequest.text += "A little smile won't hurt. ";
+                            break;
+                        case superPos:
+                            currentRequest.text += "I wanna be as joyful as ever. ";
+                            break;
+                    }
+
                     break;
                 case 2:
                     currentRequest.stats.nostalgicMature = newValue;
+                    switch (newValue)
+                    {
+                        case superNeg:
+                            currentRequest.text += "Reliving the past is my biggest passion. ";
+                            break;
+                        case neg:
+                            currentRequest.text += "Make me relive some good ol' memories. ";
+                            break;
+                        case pos:
+                            currentRequest.text += "Not being so childish might come in handy. ";
+                            break;
+                        case superPos:
+                            currentRequest.text += "I'm yearning for maturity, it's about time! ";
+                            break;
+                    }
                     break;
                 case 3:
                     currentRequest.stats.anxiousCalm = newValue;
+                    switch (newValue)
+                    {
+                        case superNeg:
+                            currentRequest.text += "I need anxiety in my life! ";
+                            break;
+                        case neg:
+                            currentRequest.text += "A little anxiety might help me with my assignments. ";
+                            break;
+                        case pos:
+                            currentRequest.text += "A little relaxation is always welcome. ";
+                            break;
+                        case superPos:
+                            currentRequest.text += "I want spa levels of relaxation! ";
+                            break;
+                    }
                     break;
                 case 4:
                     currentRequest.stats.heartbreakLove = newValue;
+                    switch (newValue)
+                    {
+                        case superNeg:
+                            currentRequest.text += "I need to hate them! ";
+                            break;
+                        case neg:
+                            currentRequest.text += "I need to like them less. ";
+                            break;
+                        case pos:
+                            currentRequest.text += "I would like to fall in love. ";
+                            break;
+                        case superPos:
+                            currentRequest.text += "I want to fall insanely in love! ";
+                            break;
+                    }
                     break;
                 case 5:
                     currentRequest.stats.drowsinessEnergy = newValue;
+                    switch (newValue)
+                    {
+                        case superNeg:
+                            currentRequest.text += "I need to sleep for 24hs straight! ";
+                            break;
+                        case neg:
+                            currentRequest.text += "Some rest might help me ";
+                            break;
+                        case pos:
+                            currentRequest.text += "I've been felling tired lately, some energy wouldn't hurt. ";
+                            break;
+                        case superPos:
+                            currentRequest.text += "I want to feel as energetic as a cheetah! ";
+                            break;
+                    }
                     break;
                 default:
                     break;
             }
         }
-        currentRequest.text = " H/S: " + currentRequest.stats.sadHappy + "\n  N/M: " + currentRequest.stats.nostalgicMature + "\n  A/C: " + currentRequest.stats.anxiousCalm + "\n  L/H: " + currentRequest.stats.heartbreakLove + "\n  E/D: " + currentRequest.stats.drowsinessEnergy;
+
+
+
         requestCompleted = false;
 
         onRequestPosted.RaiseEvent(currentRequest);
