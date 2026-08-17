@@ -4,6 +4,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] CanvasRenderer exitConfirmCanvas;
+    [SerializeField] CanvasRenderer pauseCanvas;
     [SerializeField] CanvasRenderer endDayCanvas;
 
     public void SetEndDayCanvas(bool arg)
@@ -16,4 +17,8 @@ public class UIManager : MonoBehaviour
         exitConfirmCanvas.gameObject.SetActive(arg);
     }
 
+    public void SetPauseScreen(bool arg)
+    {
+        pauseCanvas.gameObject.SetActive(arg);
+    }
 }

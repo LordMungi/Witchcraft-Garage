@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameplayManager : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] private ItemManager itemManager;
     [SerializeField] private RequestManager requestManager;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private Cauldron cauldron;
     [Space]
     [SerializeField] private int requestsPerDay = 5;
@@ -17,6 +19,25 @@ public class GameplayManager : MonoBehaviour
     private List<float> _dayAverages = new List<float>();
     private int _completedRequests = 0;
     private int _currentDay = 1;
+
+    private bool _isPaused = false;
+
+    private void Start()
+    {
+        _isPaused = false;
+        Time.timeScale = 1f;
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (!_isPaused)
+                SetPause(true);
+            else
+                SetPause(false);
+        }
+    }
 
     public void DeliverPotion()
     {
@@ -62,5 +83,12 @@ public class GameplayManager : MonoBehaviour
             average += devolution.rating;
         }
         return average / _devolutions.Count;
+    }
+
+    public void SetPause(bool arg)
+    {
+        uiManager.SetPauseScreen(arg);
+        _isPaused = arg;
+        Time.timeScale = arg ? 0f : 1f;
     }
 }
