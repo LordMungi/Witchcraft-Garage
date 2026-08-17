@@ -16,6 +16,9 @@ public class Item : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
     public Rigidbody2D body;
     public bool isGrabbed;
 
+    private SpriteRenderer _renderer;
+
+    private int _defaultLayer;
     private Vector3 _defaultPosition;
     private Quaternion _defaultRotation;
     private Vector3 _defaultScale;

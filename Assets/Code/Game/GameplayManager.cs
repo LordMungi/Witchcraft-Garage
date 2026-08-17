@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -90,5 +91,10 @@ public class GameplayManager : MonoBehaviour
         uiManager.SetPauseScreen(arg);
         _isPaused = arg;
         Time.timeScale = arg ? 0f : 1f;
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
