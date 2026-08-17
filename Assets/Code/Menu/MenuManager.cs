@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -20,5 +21,20 @@ public class MenuManager : MonoBehaviour
     public void SetCredits(bool arg)
     {
         creditsCanvas.gameObject.SetActive(arg);
+    }
+
+    public void LoadGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void OpenLink(string url)
+    {
+        Application.OpenURL(url);
     }
 }
