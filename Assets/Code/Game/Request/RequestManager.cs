@@ -102,35 +102,35 @@ public class RequestManager : MonoBehaviour
             {
                 case SatisfactionRates.Unacceptable:
                     newRating += 0;
-                    sadHappyText = "It was awful, it made me sad. ";
+                    sadHappyText = "I can't stop crying, what have you done?! ";
                     break;
                 case SatisfactionRates.Bad:
                     newRating += 1;
-                    sadHappyText = "It didn't make me happy. ";
+                    sadHappyText = "You scammer, the potion did nothing! ";
                     break;
                 case SatisfactionRates.NotEnough:
                     newRating += 2;
-                    sadHappyText = "It could have made me happier. ";
+                    sadHappyText = "A good meal would've made me happier... ";
                     break;
                 case SatisfactionRates.Perfect:
                     newRating += 3;
-                    sadHappyText = "It made me very happy. ";
+                    sadHappyText = "I'm so over the moon!! ";
                     break;
                 case SatisfactionRates.NegUnacceptable:
                     newRating += 0;
-                    sadHappyText = "It was awful, it made me happy. ";
+                    sadHappyText = "How come i'm happier that before??? ";
                     break;
                 case SatisfactionRates.NegBad:
                     newRating += 1;
-                    sadHappyText = "It didn't make me sad. ";
+                    sadHappyText = "It had zero effect. ";
                     break;
                 case SatisfactionRates.NegNotEnough:
                     newRating += 2;
-                    sadHappyText = "It could have made me sadder. ";
+                    sadHappyText = "I just felt a little down, some more power was needed... ";
                     break;
                 case SatisfactionRates.NegPerfect:
                     newRating += 3;
-                    sadHappyText = "It made me very sad. ";
+                    sadHappyText = "Don't know how you did it, but i'm sadder than ever!! ";
                     break;
                 default:
                     break;
@@ -150,35 +150,35 @@ public class RequestManager : MonoBehaviour
             {
                 case SatisfactionRates.Unacceptable:
                     newRating += 0;
-                    nostalgicMatureText = "It was awful, it made me nostalgic. ";
+                    nostalgicMatureText = "Everyone stopped taking me seriously! ";
                     break;
                 case SatisfactionRates.Bad:
                     newRating += 1;
-                    nostalgicMatureText = "It didn't make me feel mature. ";
+                    nostalgicMatureText = "Just some weird liquid, no magical side effects, dissapointed. ";
                     break;
                 case SatisfactionRates.NotEnough:
                     newRating += 2;
-                    nostalgicMatureText = "It could have made me feel more mature. ";
+                    nostalgicMatureText = "Got a bit stuck in the teenager stage. ";
                     break;
                 case SatisfactionRates.Perfect:
                     newRating += 3;
-                    nostalgicMatureText = "It made me feel very mature. ";
+                    nostalgicMatureText = "Being a grown up is overhated! ";
                     break;
                 case SatisfactionRates.NegUnacceptable:
                     newRating += 0;
-                    nostalgicMatureText = "It was awful, it made me feel mature. ";
+                    nostalgicMatureText = "Now i simply canÅLt see the beauty of the past! ";
                     break;
                 case SatisfactionRates.NegBad:
                     newRating += 1;
-                    nostalgicMatureText = "It didn't make me nostalgic. ";
+                    nostalgicMatureText = "I paid too much for it to be useless. ";
                     break;
                 case SatisfactionRates.NegNotEnough:
                     newRating += 2;
-                    nostalgicMatureText = "It could have made me more nostalgic. ";
+                    nostalgicMatureText = "I would've liked to remember more. ";
                     break;
                 case SatisfactionRates.NegPerfect:
                     newRating += 3;
-                    nostalgicMatureText = "It made me very nostalgic. ";
+                    nostalgicMatureText = "*sigh* nothing like the good old days... ";
                     break;
                 default:
                     break;
@@ -198,35 +198,35 @@ public class RequestManager : MonoBehaviour
             {
                 case SatisfactionRates.Unacceptable:
                     newRating += 0;
-                    anxiousCalmText = "It was awful, it made me anxious. ";
+                    anxiousCalmText = "Why was i left shaking out of nervousness?? ";
                     break;
                 case SatisfactionRates.Bad:
                     newRating += 1;
-                    anxiousCalmText = "It didn't make me calm. ";
+                    anxiousCalmText = "You have a clear lack of experience. ";
                     break;
                 case SatisfactionRates.NotEnough:
                     newRating += 2;
-                    anxiousCalmText = "It could have made me calmer. ";
+                    anxiousCalmText = "Still feeling a little restless. ";
                     break;
                 case SatisfactionRates.Perfect:
                     newRating += 3;
-                    anxiousCalmText = "It made me very calm. ";
+                    anxiousCalmText = "I can finally chill out, yayyy! ";
                     break;
                 case SatisfactionRates.NegUnacceptable:
                     newRating += 0;
-                    anxiousCalmText = "It was awful, it made me feel calm. ";
+                    anxiousCalmText = "How come i'm relaxed as a sloth? ";
                     break;
                 case SatisfactionRates.NegBad:
                     newRating += 1;
-                    anxiousCalmText = "It didn't make me anxious. ";
+                    anxiousCalmText = "Are you sure you know what you are doing? ";
                     break;
                 case SatisfactionRates.NegNotEnough:
                     newRating += 2;
-                    anxiousCalmText = "It could have made me more anxious. ";
+                    anxiousCalmText = "World is still a bit too quiet. ";
                     break;
                 case SatisfactionRates.NegPerfect:
                     newRating += 3;
-                    anxiousCalmText = "It made me very anxious. ";
+                    anxiousCalmText = "It got my mind racing, great job! ";
                     break;
                 default:
                     break;
@@ -246,35 +246,35 @@ public class RequestManager : MonoBehaviour
             {
                 case SatisfactionRates.Unacceptable:
                     newRating += 0;
-                    heartbreakLoveText = "It was awful, it made me feel heartbroken. ";
+                    heartbreakLoveText = "Now I can't stand them, you failed! ";
                     break;
                 case SatisfactionRates.Bad:
                     newRating += 1;
-                    heartbreakLoveText = "It didn't make me feel love. ";
+                    heartbreakLoveText = "Certainly not what I expected. ";
                     break;
                 case SatisfactionRates.NotEnough:
                     newRating += 2;
-                    heartbreakLoveText = "It could have made me feel more love. ";
+                    heartbreakLoveText = "They seem a bit more atractive, but not enough... ";
                     break;
                 case SatisfactionRates.Perfect:
                     newRating += 3;
-                    heartbreakLoveText = "It made me feel a lot of love. ";
+                    heartbreakLoveText = "I'm head over heels for them, thanks!!! ";
                     break;
                 case SatisfactionRates.NegUnacceptable:
                     newRating += 0;
-                    heartbreakLoveText = "It was awful, it made me feel love. ";
+                    heartbreakLoveText = "I can't get them out of my head! What did you do?! ";
                     break;
                 case SatisfactionRates.NegBad:
                     newRating += 1;
-                    heartbreakLoveText = "It didn't make me feel heartbroken. ";
+                    heartbreakLoveText = "Didn't do anything :/ ";
                     break;
                 case SatisfactionRates.NegNotEnough:
                     newRating += 2;
-                    heartbreakLoveText = "It could have made me more heartbroken. ";
+                    heartbreakLoveText = "I still find them likeable, something was missing... ";
                     break;
                 case SatisfactionRates.NegPerfect:
                     newRating += 3;
-                    heartbreakLoveText = "It made me feel very heartbroken. ";
+                    heartbreakLoveText = "I can finally stop thinking about them... ";
                     break;
                 default:
                     break;
@@ -294,35 +294,35 @@ public class RequestManager : MonoBehaviour
             {
                 case SatisfactionRates.Unacceptable:
                     newRating += 0;
-                    drowsinessEnergyText = "It was awful, it made me sleepy. ";
+                    drowsinessEnergyText = "*yawn* this isn't what I wanted! ";
                     break;
                 case SatisfactionRates.Bad:
                     newRating += 1;
-                    drowsinessEnergyText = "It didn't make me energetic. ";
+                    drowsinessEnergyText = "Meh, felt like drinking water. ";
                     break;
                 case SatisfactionRates.NotEnough:
                     newRating += 2;
-                    drowsinessEnergyText = "It could have made me more energetic. ";
+                    drowsinessEnergyText = "A cup of coffee would've been better. ";
                     break;
                 case SatisfactionRates.Perfect:
                     newRating += 3;
-                    drowsinessEnergyText = "It made me feel very energetic. ";
+                    drowsinessEnergyText = "The world seems much slower now, just what I wanted! ";
                     break;
                 case SatisfactionRates.NegUnacceptable:
                     newRating += 0;
-                    drowsinessEnergyText = "It was awful, it made me feel energetic. ";
+                    drowsinessEnergyText = "Everything feels too loud and bright now!!! ";
                     break;
                 case SatisfactionRates.NegBad:
                     newRating += 1;
-                    drowsinessEnergyText = "It didn't make me sleepy. ";
+                    drowsinessEnergyText = "I donÅLt remember ordering a potion with no effect. ";
                     break;
                 case SatisfactionRates.NegNotEnough:
                     newRating += 2;
-                    drowsinessEnergyText = "It could have made me sleepier. ";
+                    drowsinessEnergyText = "Drained, but still agitated. ";
                     break;
                 case SatisfactionRates.NegPerfect:
                     newRating += 3;
-                    drowsinessEnergyText = "It made me very sleepy. ";
+                    drowsinessEnergyText = "Zzz... perfect. ";
                     break;
                 default:
                     break;
