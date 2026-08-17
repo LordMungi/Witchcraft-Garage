@@ -99,7 +99,10 @@ public class CameraController : MonoBehaviour
             if (_currentCameraSectionIndex <= 0)
             {
                 if (leftHandle.gameObject.activeInHierarchy)
+                {
                     leftHandle.gameObject.SetActive(false);
+                    StopHover();
+                }
             }
         }
         else
@@ -113,12 +116,17 @@ public class CameraController : MonoBehaviour
             if (_currentCameraSectionIndex >= cameraSections.Length - 1)
             {
                 if (rightHandle.gameObject.activeInHierarchy)
+                {
                     rightHandle.gameObject.SetActive(false);
+                    StopHover();
+                }
             }
         }
         else
+        {
             if (!rightHandle.gameObject.activeInHierarchy)
                     rightHandle.gameObject.SetActive(true);
+        }
     }
 
     public void HoverLeft()
