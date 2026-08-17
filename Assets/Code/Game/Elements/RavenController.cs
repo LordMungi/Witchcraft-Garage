@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class RavenController : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField] Animator animator;
+    [SerializeField] Animator[] animators;
 
     [SerializeField] EventChannel onCreateRequest;
     [SerializeField] DevolutionEventChannel onDevolutionPosted;
@@ -27,11 +27,17 @@ public class RavenController : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         onCreateRequest.RaiseEvent();
-        animator.SetTrigger("OnLeave");
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("OnLeave");
+        }
     }
 
     public void Arrive(Devolution d)
     {
-        animator.SetTrigger("OnArrive");
+        foreach (Animator animator in animators)
+        {
+            animator.SetTrigger("OnArrive");
+        }
     }
 }
