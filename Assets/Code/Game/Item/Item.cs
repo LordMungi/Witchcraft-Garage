@@ -75,4 +75,10 @@ public class Item : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IP
     {
         onItemHoverExit.RaiseEvent(this);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Shelf"))
+            ReturnToShelf();
+    }
 }
